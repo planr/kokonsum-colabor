@@ -1,0 +1,88 @@
+/* CSS declarations go here */
+.none{
+    display: none;
+}
+.details  h2{
+    color: #777;
+}
+
+.message {
+    color: #777777;
+    /*color: #fff;*/
+    font-size: 5em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    padding-top: 50px;
+    text-align: center;
+    /*background-image: url('/container.jpg');*/
+}
+.hero-unit {
+    line-height: 1.2em;
+}
+
+
+#login-buttons {
+margin-top: 12px;
+float: right;
+
+}
+
+#login-buttons.login-buttons-dropdown-align-right #login-dropdown-list {
+    left:0;
+}
+
+/*.span4 {
+    width: 440px;
+}*/
+
+@media (max-width: 979px) and (min-width: 500px){
+    .tabDetails{
+        width: 100% !IMPORTANT;
+    }
+}
+@media (max-width: 1919px) and (min-width: 980px){
+    .tabD{
+        /*width: 50.17094017094017%% !IMPORTANT;*/
+    }
+}
+.span6 {
+    width: 500px !IMPORTANT;
+}
+
+.map {
+    position: relative;
+    background-image: url('/efeld.png');
+    background-position: -20px -20px;
+    width: 480px;
+    height: 480px;
+}
+.map circle.public {
+    fill: red;
+    /*fill: #49AFCD;*/
+}
+
+.map circle.private {
+    fill: #DA4F49;
+}
+
+.map text {
+    text-anchor: middle;
+    fill: white;
+    font-weight: bold;
+}
+
+.map circle.callout {
+    stroke-width: 5px;
+    stroke-dasharray: 9, 5;
+    stroke-opacity: .8;
+    fill: none;
+    stroke: blue;
+}
+
+.attribution {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    padding: 3px;
+    padding-bottom: 0;
+}

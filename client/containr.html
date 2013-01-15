@@ -1,0 +1,158 @@
+<head>
+  <title>Containr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  {{> page}}
+</body>
+
+<!-- ### TPL NAVIGATION ### -->
+<template name="nav">
+    <div class="navbar">
+	    <div class="navbar-inner">
+		    <a class="brand" href="#">containr</a>
+		    <ul class="nav">
+		    	{{#if currentUser}}
+          {{!#each currentUser.emails}}
+          {{!/each}}
+          <!-- <li><a href="#addModal" data-toggle="modal" class="addDialog">Neuen containr melden</a></li> -->
+          <li class="{{displclass}}"><a href="#" class="del">Alle Containr-Spots löschen</a></li>
+          <li class="{{displclass}}"><a href="#" class="add">3 Containr hinzufügen</a></li>
+			    {{/if}}
+			    <li style="float:right;">{{loginButtons align="right"}}</li>
+		    </ul>
+	    </div>
+    </div>
+</template>
+
+<!-- ### TPL DETAILS & LIST ### -->
+<template name="ctr">
+   <div class="span12">
+	 <!-- <div class="pagination-centered"> -->
+	 {{#if korb}}
+		<ul class="nav nav-tabs">
+          <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
+          <li><a href="#liste" data-toggle="tab">Liste</a></li>
+		</ul>
+		<div class="tab-content">
+       <div id="details" class="tab-pane fade in active">
+          {{> details}}
+       </div>
+       <div id="liste" class="tab-pane fade in">
+          <table class="table table-striped table-bordered table-hover">
+          	<tbody>
+            {{#each korb}}
+          	<tr><td><strong>{{title}}</strong></td><td>{{description}}</td></tr>
+          	{{/each}}
+          </tbody>
+         </table>
+      </div>
+	</div>
+	 {{else}}
+	 <div class="alert alert-info">
+	  	<strong>Leider keine</strong> Containr gemeldet!
+	 </div>
+	 {{/if}}
+	  <!-- </div> --> 
+	</div>
+</template>
+
+<!-- ### TPL DETAILS SUB-TPL ### -->
+<template name="details">
+  <div class="details well">
+    {{#if korb}}
+      {{#with korb}}
+        <h2>{{title}}</h2>
+        <h4>{{description}}</h4>
+          <p><small>Veröffentlicht von {{creatorName}} </small></p>
+      {{/with}}
+    {{else}}
+      <h1 class="muted pagination-centered">
+        {{#if anyContainr}}
+          Klicke einen Containr-Spot an, um Details zu sehen
+        {{else}}
+          Melde Dich an, und doppelklicke auf die Karte, um einen Containr anzulegen.
+        {{/if}}
+      </h1>
+    {{/if}}
+  </div>
+</template>
+
+<!-- ### TPL createContainr DIALOG BOX ### -->
+<template name="createDialog">
+  <div class="mask"> </div>
+  <div id="addModal" class="modal hide fade" role="dialog" >
+    <div class="modal-header">
+      <button type="button" class="close cancel">&times;</button>
+      <h3>Neuen containr anlegen</h3>
+    </div>
+
+    <div class="modal-body">
+      {{#if error}}
+        <div class="alert alert-error">{{error}}</div>
+      {{/if}}
+
+      <label>Bezeichnung</label>
+      <input type="text" class="title span5">
+
+      <label>Beschreibung des Inhalts</label>
+      <textarea class="description span5"></textarea>
+
+      <label class="checkbox" style="display:none;">
+        <input type="checkbox" class="private">
+        Nur privaten Kontakte &mdash; zeigen
+      </label>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn cancel">Abbrechen</a>
+      <a href="#" class="btn btn-primary save" rel="tooltip" data-original-title="Methode noch nicht implememtiert">containr hinzufügen</a>
+    </div>
+  </div>
+</template>
+
+
+<!-- ### TPL MAP SECTION ### -->
+<template name="map">
+  <div class="map">
+    {{#constant}}
+      <svg width="480" height="480">
+        <circle class="callout" cx=-100 cy=-100></circle>
+        <g class="circles"></g>
+        <g class="labels"></g>
+      </svg>
+    {{/constant}}
+    <div>
+      <small class="attribution muted">&copy;
+        <a href="http://www.openstreetmap.org/?lat=50.9456&lon=6.9209&zoom=12&layers=M"
+           target="_blank">OpenStreetMap</a> contributors</small>
+    </div>
+  </div>
+</template>
+
+<!-- ### TPL MAIN PAGE HTML SKELLETON ### -->
+<template name="page">
+    {{> createDialog}}
+  <div class="container-fluid">
+    <div class="row-fluid">
+            {{> nav}}
+            {{#if currentUser}}
+          <div class="span6">
+            {{> map}}
+            <div class="pagination-centered">
+              <em><small>Auf Karte doppelklicken um neuen containr zu melden</small></em>
+            </div>
+          </div>
+          <div class="span5 tabDetails tabD">
+          <div class="span11">
+              <h4>Auf Karte doppelklicken für neuen Containr!</h4>
+              {{> ctr}}
+          </div>
+          </div>
+      </div>
+          {{else}}
+            <div class="message hero-unit">Welcome to containr</div>
+            {{/if}}
+    </div>
+  </div>
+</template>
