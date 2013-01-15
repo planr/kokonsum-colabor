@@ -69,6 +69,9 @@ float: right;
     background-position: -20px -20px;
     width: 480px;
     height: 480px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 .map circle.public {
     fill: red;
