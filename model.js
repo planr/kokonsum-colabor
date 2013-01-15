@@ -1,5 +1,4 @@
 Containrs = new Meteor.Collection("containrs");
-// UserData = new Meteor.Collection("userData");
 
 var attending = function (containr) {
   return (_.groupBy(containr.rsvps, 'rsvp').yes || []).length;

@@ -4,6 +4,3 @@ Meteor.publish("directory", function () {
 Meteor.publish("containrs", function () {
   return Containrs.find({});
 });
-// Meteor.publish("userData", function () {
-//   return Meteor.users.find({});
-// });

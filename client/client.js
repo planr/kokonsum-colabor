@@ -111,8 +111,6 @@ Template.createDialog.events({
       function (error, containr) {
         if (! error) {
           Session.set("selected", containr);
-          // if (! public && Meteor.users.find().count() > 1)
-            // openInviteDialog();
         }
       });
       template.find(".description").value = "";
@@ -137,7 +135,7 @@ Template.map.events({
     Session.set("selected", event.currentTarget.id);
   },
   'dblclick .map': function (event, template) {
-    if (! Meteor.userId()) // must be logged in to create events
+    if (! Meteor.userId()) 
       return;
     var coords = coordsRelativeToElement(event.currentTarget, event);
     // openCreateDialog(coords.x / 480, coords.y / 480);
@@ -157,7 +155,7 @@ Template.map.rendered = function () {
         return 10 + Math.sqrt(attending(containr)) * 10;
       };
 
-      // Draw a circle for each party
+      // Draw a circle for each containr
       var updateCircles = function (group) {
         group.attr("id", function (containr) { return containr._id; })
         .attr("cx", function (containr) { return containr.x * 480; })
@@ -196,7 +194,7 @@ Template.map.rendered = function () {
       updateLabels(labels.transition().duration(250).ease("cubic-out"));
       labels.exit().remove();
 
-      // Draw a dashed circle around the currently selected party, if any
+      // Draw a dashed circle around the currently selected containr, if any
       var callout = d3.select(self.node).select("circle.callout")
         .transition().duration(250).ease("cubic-out");
       if (selectedContainr)
