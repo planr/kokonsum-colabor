@@ -5,6 +5,11 @@
 .details  h2{
     color: #777;
 }
+.alert-success {
+    margin-left: 11px;
+    width: 405px;
+}
+
 
 .message {
     color: #777777;
@@ -19,7 +24,16 @@
 .hero-unit {
     line-height: 1.2em;
 }
-
+p.normal{
+    font-size: 18px !IMPORTANT;
+    font-weight: 200;
+    letter-spacing: .7px;
+    line-height: 1.2em;
+    margin-top: 2em;
+}
+p.normal a{
+    font-size: 14px;
+}
 
 #login-buttons {
 margin-top: 12px;

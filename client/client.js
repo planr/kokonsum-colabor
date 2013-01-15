@@ -74,6 +74,16 @@ Template.nav.displclass = function () {
       Containrs.remove({});
        // Session.set("werte");
     },
+    'click a.helps' : function () {
+      $('#detTabs a:last').tab('show');
+    },
+    'click a.detCtr' : function () {
+      $('#detTabs a[href="#details"]').tab('show');
+    },
+    'click a.listCtr' : function () {
+      $('#detTabs a[href="#liste"]').tab('show');
+    },
+
     'click a.add' : function (){
       Containrs.insert(
 { "owner" : Meteor.userId(), "x" : Math.random(), "y" : Math.random(), "title" : "Aldi Nippes", "description" : "5 Päckchen Gouda in Scheiben 400g", "public" : true, "invited" : [ ], "rsvps" : [ ] });
